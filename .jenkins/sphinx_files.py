@@ -13,6 +13,7 @@ def main() -> None:
 
     env = os.environ.copy()
     for file in files_to_run:
+        print(f"Running {file}")
         env["GALLERY_PATTERN"] = file
         subprocess.check_output(["make", "docs"], env=env)
 
