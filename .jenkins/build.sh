@@ -58,7 +58,7 @@ if [[ "${JOB_TYPE}" == "worker" ]]; then
   make download
   python .jenkins/sphinx_files.py
   rm -rf docs
-	cp -r $(BUILDDIR)/html docs
+	cp -r _build/html docs
 	touch docs/.nojekyll
 
   # Step 4: If any of the generated files are not related the tutorial files we want to run,
