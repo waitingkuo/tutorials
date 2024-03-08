@@ -1,6 +1,7 @@
 from get_files_to_run import calculate_shards, parse_args, get_all_files
 import subprocess
 import os
+from pathlib import Path
 
 
 def main() -> None:
@@ -14,7 +15,7 @@ def main() -> None:
     env = os.environ.copy()
     for file in files_to_run:
         print(f"Running {file}")
-        env["GALLERY_PATTERN"] = file
+        env["GALLERY_PATTERN"] = Path(file).stem
         subprocess.check_output(["make", "html"], env=env)
 
 
