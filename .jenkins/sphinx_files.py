@@ -15,7 +15,7 @@ def main() -> None:
     for file in files_to_run:
         print(f"Running {file}")
         env["GALLERY_PATTERN"] = file
-        subprocess.check_output(["make", "docs"], env=env)
+        subprocess.check_output(["make", "html"], env=env)
 
 
 if __name__ == "__main__":
