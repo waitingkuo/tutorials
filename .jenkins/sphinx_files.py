@@ -1,21 +1,13 @@
-from get_files_to_run import calculate_shards, parse_args, get_all_files
 import subprocess
 import os
-from pathlib import Path
 
 
 def main() -> None:
-    args = parse_args()
-    all_files = get_all_files()
-    files_to_run = calculate_shards(all_files, num_shards=args.num_shards)[
-        args.shard_num - 1
-    ]
-    print(files_to_run)
-
+    files_to_run = os.environ["FILES_TO_RUN"]
     env = os.environ.copy()
-    for file in files_to_run:
+    for file in files_to_run.split(" "):
         print(f"Running {file}")
-        env["GALLERY_PATTERN"] = Path(file).stem
+        env["GALLERY_PATTERN"] = file
         subprocess.check_output(["make", "html"], env=env)
 
 
