@@ -76,9 +76,10 @@ def compute_files_to_keep(files_to_run: List[str]) -> List[str]:
 
 
 def remove_other_files(all_files, files_to_keep) -> None:
+
     for file in all_files:
         if file not in files_to_keep:
-            os.remove(file)
+            remove_runnable_code(file, file)
 
 
 def parse_args() -> Any:

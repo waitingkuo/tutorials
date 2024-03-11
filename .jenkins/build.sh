@@ -57,16 +57,6 @@ if [[ "${JOB_TYPE}" == "worker" ]]; then
   # IMPORTANT NOTE: We assume that each tutorial has a UNIQUE filename.
   FILES_TO_RUN=$(python .jenkins/get_files_to_run.py)
   export FILES_TO_RUN
-  # Remove all unrelated files
-  set +x
-  for filename in $(find beginner_source intermediate_source advanced_source recipes_source prototype_source -name '*.rst'); do
-    file_basename=$(basename $filename .ipynb)
-    if [[ ! " ${FILES_TO_RUN} " =~ " ${file_basename} " ]]; then
-      echo "removing $filename"
-      rm $filename
-    fi
-  done
-  set -x
 
   make download
   python .jenkins/sphinx_files.py
