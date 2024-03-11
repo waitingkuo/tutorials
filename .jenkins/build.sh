@@ -56,6 +56,7 @@ if [[ "${JOB_TYPE}" == "worker" ]]; then
   # Step 2: Keep certain tutorials based on file count, and remove runnable code in all other tutorials
   # IMPORTANT NOTE: We assume that each tutorial has a UNIQUE filename.
   FILES_TO_RUN=$(python .jenkins/get_files_to_run.py)
+  export FILES_TO_RUN
   # Remove all unrelated files
   set +x
   for filename in $(find beginner_source intermediate_source advanced_source recipes_source prototype_source -name '*.py'); do
