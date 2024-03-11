@@ -7,7 +7,7 @@ def main() -> None:
     env = os.environ.copy()
     for file in files_to_run.split(" "):
         print(f"Running {file}")
-        env["GALLERY_PATTERN"] = file
+        env["RUN_ONLY"] = file
         subprocess.check_output(["make", "html"], env=env)
 
 
